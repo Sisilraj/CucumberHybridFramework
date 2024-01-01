@@ -47,12 +47,12 @@ public class Login {
 		Assert.assertTrue(accountPage.isDisplayMyaccountPage());
 	}
 	
-	@When("User enters invalid email address {string} into email field")
+	@When("^User enters invalid email address (.+) into email field$")
 	public void user_enters_invalid_email_address_into_email_field(String wrongEmailText) {
 		loginPage.enterEmail(wrongEmailText);
 	}
 
-	@And("User enters invalid password {string} into password field")
+	@And("^User enters invalid password (.+) into password field$")
 	public void user_enters_invalid_password_into_password_field(String wrongPasswordText) {
 		loginPage.enterPassword(wrongPasswordText);
 	}

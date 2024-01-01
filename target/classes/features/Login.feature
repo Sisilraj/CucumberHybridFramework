@@ -13,26 +13,34 @@ Feature: Login Functionality
       | amotooricap2@gmail.com |    12345 |
       | amotooricap3@gmail.com |    12345 |
 
-  Scenario: Login with invalid credentials
+  Scenario Outline: Login with invalid credentials
     Given User has navigated to login page
-    When User enters invalid email address "test@gmail.com" into email field
-    And User enters invalid password "123" into password field
+    When User enters invalid email address <username> into email field
+    And User enters invalid password <password> into password field
     And User click on Login button
     Then User should get proper warning message about credentials mismatch
 
-  Scenario: Login with valid email and invalid password
+  Scenario Outline: Login with valid email and invalid password
     Given User has navigated to login page
-    When User enters valid email address "testdemo@gmail.com" into email field
-    And User enters valid password "123" into password field
+    When User enters valid email address <username> into email field
+    And User enters valid password <password> into password field
     And User click on Login button
     Then User should get proper warning message about credentials mismatch
 
-  Scenario: Login with invalid email and valid password
+    Examples: 
+      | username               | password |
+      | amotooricap1@gmail.com |      123 |
+
+  Scenario Outline: Login with invalid email and valid password
     Given User has navigated to login page
-    When User enters valid email address "test@gmail.com" into email field
-    And User enters valid password "123456" into password field
+    When User enters valid email address <username> into email field
+    And User enters valid password <password> into password field
     And User click on Login button
     Then User should get proper warning message about credentials mismatch
+
+    Examples: 
+      | username           | password |
+      | amotcap1@gmail.com |    12345 |
 
   Scenario: Login without providing any credentials
     Given User has navigated to login page
